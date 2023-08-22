@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+void insertNumber(int arr[], int *size, int number, int position) {
+    // Shift elements to make space for the new number
+    for (int i = *size; i > position; i--) {
+        arr[i] = arr[i - 1];
+    }
+    
+    // Insert the number at the specified position
+    arr[position] = number;
+    
+    // Increase the size of the array
+    (*size)++;
+}
+
+int main() {
+    int arr[100];  // Assuming a maximum array size of 100
+    int size, number, position;
+    
+    // Input array size
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+    
+    // Input array elements
+    printf("Enter array elements:\n");
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    // Input number and position
+    printf("Enter the number to insert: ");
+    scanf("%d", &number);
+    printf("Enter the position to insert at: ");
+    scanf("%d", &position);
+    
+    if (position < 0 || position > size) {
+        printf("Invalid position\n");
+        return 1;
+    }
+    
+    // Call the insertNumber function
+    insertNumber(arr, &size, number, position);
+    
+    // Output the new list
+    printf("New list after insertion:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
